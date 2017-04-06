@@ -34,7 +34,7 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
             for (int i = oldVersion; i < newVersion; i++) {
                 try {
                     BaseMigratorHelper migratorHelper = (BaseMigratorHelper) Class
-                            .forName("com.xd.db.migrator.MigratorHelper" + (i + 1)).newInstance();
+                            .forName("com.acmenxd.greendao3_demo.db.migrator.MigratorHelper" + (i + 1)).newInstance();
                     if (migratorHelper != null) {
                         migratorHelper.onUpgrade(db);
                     }

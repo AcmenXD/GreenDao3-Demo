@@ -59,6 +59,21 @@ public class MigrationHelperUtil {
      * @param daoClasses 需要更新的Dao Class类
      */
     public void migrate(Database db, DefaultCallback pCallback, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+        // 检查表是否存在,如果不存在则创建
+        for (int i = 0; i < daoClasses.length; i++) {
+            try {
+                Method method = daoClasses[i].getMethod("createTable", Database.class, boolean.class);
+                try {
+                    method.invoke(null, db, true);
+                } catch (IllegalAccessException pE) {
+                    pE.printStackTrace();
+                } catch (InvocationTargetException pE) {
+                    pE.printStackTrace();
+                }
+            } catch (NoSuchMethodException pE) {
+                pE.printStackTrace();
+            }
+        }
         //新建临时表
         generateTempTables(db, daoClasses);
         //删除表
@@ -147,7 +162,7 @@ public class MigrationHelperUtil {
                         if (TextUtils.isEmpty(temp)) {
                             temp = "";
                         }
-                        propertiesQuery.add("\""+temp+ "\""+ " as " + columnName);
+                        propertiesQuery.add("\"" + temp + "\"" + " as " + columnName);
                         properties.add(columnName);
                     } else if (TYPE_INTEGER.equals(getTypeByClass(daoConfig.properties[j].type))) {
                         Long temp = null;
