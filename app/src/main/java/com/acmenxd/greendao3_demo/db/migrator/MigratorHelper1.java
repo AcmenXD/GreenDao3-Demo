@@ -21,16 +21,13 @@ public class MigratorHelper1 extends BaseMigratorHelper {
             public String onText(String tablename, String columnName) {
                 return null;
             }
-
             public Long onInteger(String tablename, String columnName) {
                 return null;
             }
-
             @Override
             public Double onReal(String tablename, String columnName) {
                 return null;
             }
-
             @Override
             public Boolean onBoolean(String tablename, String columnName) {
                 return null;

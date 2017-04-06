@@ -55,8 +55,8 @@ public class MigrationHelperUtil {
      * 数据库更新
      *
      * @param db
-     * @param pCallback  新增字段在更新数据库时回调, 设置其默认值, 如为null,字段会自动设置默认值
-     * @param daoClasses 需要更新或新建表的Dao Class类
+     * @param pCallback  新增字段在更新数据库时回调, 设置其默认值, 如为null,字段会自动设置默认值(参考DefaultCallback类)
+     * @param daoClasses 需要更新或新建表的Dao.class类
      */
     public void migrate(Database db, DefaultCallback pCallback, Class<? extends AbstractDao<?, ?>>... daoClasses) {
         // 检查表是否存在,如果不存在则创建

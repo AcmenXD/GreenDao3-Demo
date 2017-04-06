@@ -18,21 +18,21 @@ import java.util.List;
  * @date 2017/2/28 10:00
  * @detail 数据库操作工具类
  */
-public class DBUtils {
-    private static DBUtils instance;
+public class StudentDB {
+    private static StudentDB instance;
     private SQLiteDatabase db;
     private DaoSession ds;
     private StudentDao mStudentDao;
 
-    private DBUtils() {
+    private StudentDB() {
         db = DBManager.getInstance().getDatabase();
         ds = DBManager.getInstance().getDaoSession();
         mStudentDao = ds.getStudentDao();
     }
 
-    public static DBUtils getInstance() {
+    public static StudentDB getInstance() {
         if (instance == null) {
-            instance = new DBUtils();
+            instance = new StudentDB();
         }
         return instance;
     }
